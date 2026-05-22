@@ -1,0 +1,95 @@
+/* ========== КОНТЕЙНЕР АВТОРИЗАЦИИ ========== */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* Светлая тема: от белого к синему */
+  background: linear-gradient(135deg, #ffffff 0%, #4361ee 100%);
+}
+
+body.dark-theme .auth-container {
+  /* Тёмная тема: от тёмно-фиолетового к фиолетовому */
+  background: linear-gradient(135deg, #1a0a2e 0%, #7b2cbf 100%);
+}
+
+.auth-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.auth-header i {
+  font-size: 48px;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+.auth-header h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.auth-header p {
+  color: var(--text-light);
+}
+
+.auth-form {
+  margin-bottom: 20px;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+.forgot-link {
+  color: var(--primary);
+  text-decoration: none;
+}
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.auth-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-light);
+}
+.auth-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+#app.logged-out .auth-form {
+  position: static;
+  transform: none;
+  margin: 40px auto;
+}
+
+.auth-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}

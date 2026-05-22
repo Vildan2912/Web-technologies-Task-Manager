@@ -1,0 +1,167 @@
+/* Календарь */
+.calendar-view {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  width: 100%;
+  overflow-x: auto;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calendar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.calendar-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  background-color: var(--bg);
+  border-radius: var(--radius);
+}
+
+.calendar-day {
+  min-height: 100px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Все ячейки одинаковой ширины */
+.calendar-day,
+.calendar-day-header {
+  width: 100%;
+  min-width: 0;
+}
+
+.calendar-day.today {
+  background-color: rgba(67, 97, 238, 0.05);
+  border-color: var(--primary);
+}
+
+.calendar-day.empty {
+  background-color: var(--bg);
+  border-color: transparent;
+}
+
+.calendar-date {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.calendar-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 70px;
+}
+
+.calendar-task {
+  font-size: 0.65rem;
+  padding: 3px 5px;
+  border-radius: 4px;
+  background-color: rgba(67, 97, 238, 0.1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.calendar-task.high {
+  background-color: rgba(247, 37, 133, 0.15);
+  border-left: 3px solid var(--error);
+}
+.calendar-task.medium {
+  background-color: rgba(248, 150, 30, 0.15);
+  border-left: 3px solid var(--warning);
+}
+.calendar-task.low {
+  background-color: rgba(76, 201, 240, 0.15);
+  border-left: 3px solid var(--success);
+}
+
+.calendar-task-overdue {
+  background-color: rgba(247, 37, 133, 0.2);
+  border-left: 3px solid var(--error);
+  color: var(--error);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .calendar-grid {
+    gap: 4px;
+  }
+  .calendar-day {
+    min-height: 70px;
+    padding: 4px;
+  }
+  .calendar-date {
+    font-size: 0.7rem;
+  }
+  .calendar-tasks {
+    max-height: 45px;
+  }
+  .calendar-task {
+    font-size: 0.55rem;
+    padding: 2px 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 8px;
+  }
+  .calendar-day {
+    min-height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  .calendar-date {
+    margin-bottom: 0;
+    width: 40px;
+  }
+  .calendar-tasks {
+    flex: 1;
+    max-height: none;
+  }
+  .calendar-task {
+    white-space: normal;
+    word-break: break-word;
+  }
+}

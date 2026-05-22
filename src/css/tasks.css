@@ -1,0 +1,618 @@
+/* Сайдбар */
+.sidebar {
+  grid-row: 1 / span 2;
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border);
+  padding: 20px 0;
+  overflow-y: auto;
+  transition: width var(--transition-speed) ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  width: 100%;
+  text-align: right;
+  transition: color 0.2s ease;
+  margin-bottom: 10px;
+}
+.sidebar-toggle:hover {
+  color: var(--primary);
+}
+
+.sidebar-section {
+  margin-bottom: 20px;
+}
+.sidebar-title {
+  padding: 0 20px 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+  font-weight: 600;
+  transition: opacity var(--transition-speed) ease;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.sidebar-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+body.dark-theme .sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.sidebar-link.active {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: var(--primary);
+  font-weight: 500;
+}
+.sidebar-link i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+  transition: margin-right var(--transition-speed) ease;
+}
+
+/* Свернутый сайдбар */
+#app.sidebar-collapsed .sidebar-toggle {
+  text-align: center;
+  padding: 10px 0;
+}
+#app.sidebar-collapsed .sidebar-title {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+#app.sidebar-collapsed .sidebar-link {
+  justify-content: center;
+  padding: 8px 0;
+}
+#app.sidebar-collapsed .sidebar-link span {
+  display: none;
+}
+#app.sidebar-collapsed .sidebar-link i {
+  margin-right: 0;
+}
+
+/* Шапка сайта */
+.top-header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.new-task-btn {
+  white-space: nowrap;
+}
+
+/* Основной контент */
+.main-content {
+  grid-column: 2;
+  padding: 0;
+  overflow-y: auto;
+  background-color: var(--bg);
+  transition: padding-left var(--transition-speed) ease;
+}
+
+.content-area {
+  padding: 0 24px 24px 24px;
+  background-color: var(--bg);
+}
+
+/* Сортировка задач */
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sort-controls label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Доска задач */
+.board-view {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.board-column {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 16px;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: var(--shadow);
+}
+
+.column-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Карточка задачи */
+.task-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.task-desc {
+  color: var(--text-light);
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+}
+
+.task-priority {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
+.priority-high {
+  background-color: rgba(247, 37, 133, 0.15);
+  color: var(--error);
+}
+.priority-medium {
+  background-color: rgba(248, 150, 30, 0.15);
+  color: var(--warning);
+}
+.priority-low {
+  background-color: rgba(76, 201, 240, 0.15);
+  color: var(--success);
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.task-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.task-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--primary);
+}
+
+/* Список задач */
+.list-view {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.list-header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 100px;
+  padding: 15px 20px;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 100px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  align-items: center;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.list-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Поддержка класса nav-link наравне с sidebar-link */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.nav-link i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+  transition: margin-right var(--transition-speed) ease;
+}
+
+/* Сворачивание сайдбара для nav-link */
+#app.sidebar-collapsed .sidebar-title,
+#app.sidebar-collapsed .nav-title {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#app.sidebar-collapsed .nav-link {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+#app.sidebar-collapsed .nav-link span {
+  display: none;
+}
+
+#app.sidebar-collapsed .nav-link i {
+  margin-right: 0;
+}
+
+#app.sidebar-collapsed .sidebar-toggle {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Модальное окно */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-container {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 550px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-light);
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--error);
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-body .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-body .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.modal-body .form-group input,
+.modal-body .form-group select,
+.modal-body .form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.modal-body .form-group input:focus,
+.modal-body .form-group select:focus,
+.modal-body .form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.modal-body .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modal-body .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 0;
+}
+
+.modal-body .form-actions button {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+}
+
+/* Просроченные задачи */
+.task-card.task-overdue {
+  border-left: 4px solid var(--error);
+  background-color: rgba(247, 37, 133, 0.05);
+}
+
+.task-card.task-overdue .task-title {
+  color: var(--error);
+}
+
+.deadline-overdue {
+  color: var(--error);
+  font-weight: 500;
+}
+
+.deadline-overdue i {
+  color: var(--error);
+}
+
+.list-item-overdue {
+  background-color: rgba(247, 37, 133, 0.05);
+}
+
+.text-overdue {
+  color: var(--error);
+}
+
+/* Просроченные задачи в календаре */
+.calendar-task-overdue {
+  background-color: rgba(247, 37, 133, 0.2);
+  border-left: 3px solid var(--error);
+  color: var(--error);
+}
+
+/* Стили для карточки курса валют */
+.currency-card {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin: 1rem 0 1rem 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.currency-card:hover {
+  transform: translateY(-2px);
+}
+
+.currency-card i {
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+.currency-content {
+  flex: 1;
+}
+
+.currency-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.currency-data {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Стили для карточки погоды */
+.weather-card {
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin: 0 0 1.5rem 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-2px);
+}
+
+.weather-card i {
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+.weather-content {
+  flex: 1;
+}
+
+.weather-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.weather-data {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  .currency-card, .weather-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .currency-card i, .weather-card i {
+    font-size: 1.75rem;
+  }
+  
+  .currency-data, .weather-data {
+    font-size: 0.85rem;
+  }
+}
